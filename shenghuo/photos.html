@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+		 <!--<link rel="stylesheet" type="text/css" href="css/reset.css"/>-->
+		 <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+		 <script type="text/javascript" src="js/zepto.js"></script>
+		 <script type="text/javascript" src="js/touch.js"></script>
+		 <style type="text/css">
+		 	html,body,canvas,ul,li{
+		 		margin: 0;
+		 		padding: 0;
+		 	}
+		 	body{
+		 		background-color: #000000;
+		 	}
+		 	ul{
+		 		list-style: none;
+		 	}
+		 	li{
+		 		width: 100px;
+		 		height: 100px;
+		 		overflow: hidden;
+		 		float: left;
+		 	}
+		 	.large{
+		 		width:100%;
+		 		height: 100%;
+		 		position: absolute;
+		 		top: 0;
+		 		left: 0;
+		 		background-color: #000000;
+		 		display: none;
+		 	}
+		 </style>
+	</head>
+	<body>
+		<ul id="container" class="imgContainer"></ul>
+		<div class="large hidden animated fadeIn" id="large-container">
+			<img id="large_img"/>
+		</div>
+	</body>
+</html>
+<script>
+	var total = 5;
+	var zWin = $(window);
+	var wImage = $('#large_img');
+	var domImage = wImage[0];
+	var cid;
+	var render = function(){
+		var padding = 2;
+		var winWidth = zWin.width();
+		var picWidth = Math.floor((winWidth - padding*3)/4);
+		var tmpl = '';
+		for(var i = 1;i<=total;i++){
+			var p = padding;
+			var imgSrc = 'img/'+i+'.jpg';
+			if(i%4==1){
+				p = 0;
+			}
+			tmpl += '<li data-id="'+i+'" class="animated bounceIn" style="width:'+picWidth+'px;height:'+picWidth+'px;padding-top:'+padding+'px;padding-left:'+p+'px;"><canvas id="cvs_'+i+'"></canvas></li>';
+			var imageObj = new Image();
+			imageObj.index = i;
+			imageObj.onload = function(){//图片预加载
+				var cvs = $('#cvs_'+this.index)[0].getContext('2d');
+				cvs.width = picWidth;
+				cvs.height = picWidth;
+				cvs.drawImage(this,0,0);
+			}
+			imageObj.src = imgSrc;
+		}
+		$('#container').html(tmpl);
+	}
+	render();
+	function loadImg(id,callback){
+		$('#large-container ').css({
+			width:zWin.width(),
+			height:zWin.height()
+		}).show();
+//		var imgSrc = 'img/'+id+'.large.jpg';
+		var imgSrc = 'img/'+id+'.jpg';
+		var imgObj = new Image();
+		imgObj.onload = function(){
+			var w = this.width;
+			var h = this.height;
+			var winWidth = zWin.width();
+			var winHeight = zWin.height();
+			var realW = winHeight*w/h;
+			var paddingLeft = parseInt((winWidth - realW)/2);
+			var realH = winWidth*h/w; 
+			var paddingTop = parseInt((winHeight - realH)/2);
+			wImage.css('width','auto').css('height','auto').css('padding-left','auto').css('padding-top','auto');
+			if(h/w>1.2){
+				wImage.attr('src',imgSrc).css('height',winHeight).css('padding-left',paddingLeft);
+			
+			}else{
+				wImage.attr('src',imgSrc).css('width',winWidth).css('padding-top',paddingTop);
+			}
+			callback&&callback();
+		}
+		imgObj.src = imgSrc;
+	}
+	
+	//做一个事件代理delegate
+	$('#container').delegate('li','tap',function(){//触发屏幕触发tap事件
+		var _id = cid = $(this).attr('data-id');
+		$('#large-container').removeClass('hidden').addClass('show');
+		
+		loadImg(_id);//触发大图函数
+	})
+	$('#large-container ').tap(function(){
+		$(this).hide();
+	}).swipeLeft(function(){
+		cid++;
+		if(cid>total){
+			cid = total;
+			alert('这是最后一张了呢');
+		}else{
+			loadImg(cid,function(){
+				domImage.addEventListener('webkitAnimationEnd',function(){
+					wImage.removeClass('animated bounceInRight');
+					domImage.removeEventListener('webkitAnimationEnd',false);
+				},false);
+				wImage.addClass('animated bounceInRight');
+			});
+		}
+	}).swipeRight(function(){
+		cid--;
+		if(cid<1){
+			cid = 1;
+			alert('这是第一张了呢');
+		}else{
+			loadImg(cid,function(){
+				domImage.addEventListener('webkitAnimationEnd',function(){
+					wImage.removeClass('animated bounceInLeft');
+					domImage.removeEventListener('webkitAnimationEnd',false);
+				},false);
+				wImage.addClass('animated bounceInLeft');
+			});
+		}
+	});
+</script>

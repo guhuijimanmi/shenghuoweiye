@@ -1,10 +1,19 @@
-		html,body{
-				
+		body{
 			height: 100%;
+			position: relative;
 		}
 		header{
 			display: flex;
 			width: 100%;
+			z-index: 100;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right:0;
+			overflow: hidden;
+		}
+		header a{
+			color:#fff
 		}
 		.logo{
 			background-color: #ffffff;
@@ -30,9 +39,11 @@
 		nav li{
 			width: 1.27rem;
 			height: 1rem;
-			border: 1px solid red;
 			text-align: center;
 			line-height: 1rem;
+		}
+		#container{
+			margin-top: 1.4rem;
 		}
 		#tapBtn{
 			display: flex;
@@ -42,21 +53,19 @@
 			height: 0.3rem;
 			border-radius:0.15rem;
 			background-color: #FFFF00;
-			border: 1px solid #fffff;
 		}
 		#imgShow{
 			position: relative;
 		}
 		.img{
 			width: 100%;
+			min-height: 6rem;
 			max-height: 9rem;
-			border: 1px solid #000000;
 		}
 		#imgItro{
 			color: #ffffff;
 			background-color: #000000;
 			opacity: 0.5;
-			border: 1px solid red;
 			height: 1rem;
 			margin-top: -1.1rem;
 			
@@ -65,33 +74,44 @@
 			display: block;
 			text-align: center;
 			width: 2rem;
-			border: 1px solid red;
 			margin: 0.1rem auto;
 		}
 		#videoShow{
-			border: 1px solid red;
-			
+			position: relative;
 		}
-		#videoShow ul{
+		#videoShow .videoTitle{
 			display: flex;
 			justify-content: space-between;
 			background-color: #ffffff;
 			height: 0.9rem;
 		}
-		#videoShow ul li{
-			
-		}
-		#videoShow ul span{
+		
+		#videoShow ul:nth-child(1) span{
 			line-height: 0.9rem;
 			padding-left: 0.2rem;
 		}
-		#videoShow ul li:nth-child(1){
+		#videoShow ul:nth-child(1) li:nth-child(1){
 			font-size: 30px;
 		}
-		#videoShow ul li:nth-child(2){
+		#videoShow ul:nth-child(1) li:nth-child(2){
 			font-size: 26px;
 			color:#7f7d7d;
 			padding-right: 0.2rem;
+		}
+		.videoList{
+			position: absolute;
+			top: 0.9rem;
+			right: 0;
+			background-color: #000000;
+			display: none;
+		}
+		.videoList li{
+			line-height: 0.8rem;
+			font-size: 26px;
+			color:#FFFFFF;
+			padding-left: 0.2rem;
+			padding-right: 0.2rem;
+			border-bottom: 2px solid #CCCCCC;
 		}
 		.glyphicon{
 			top:4px;
@@ -118,7 +138,8 @@
 			background-color: #000000;
 		}
 		.video{
-			
+			width: 100%;
+			height: 100%;
 		}
 		.intro{
 			padding: 0.33rem;
@@ -129,15 +150,18 @@
 			margin-top: 0.4rem;
 			
 		}
-		.intro_img{
-			width:1.7rem;
-			height: 1.7rem;
+		.intro_img {
+			width:1.7rem;  
+			height: 1.5rem;
 			background-color: #CCCCCC;
+		}
+		.intro_img canvas{
+			width:1.7rem;  
+			height: 1.5rem;
 		}
 		.intro_intro{
 			width:8.4rem;
 			margin-left: 0.34rem;
-			border: 1px solid red;
 		}
 		.intro_intro h2{
 			font-size: 30px;
@@ -161,11 +185,21 @@
 		.intro_sec{
 			color: #f5494d;
 		}
+		.photo{
+			position: absolute;
+			right: 0.33rem;
+			font-size: 26px;
+			padding-top: 0.2rem;
+			color: #F2EA41;
+			
+		}
+		.photo a{
+			color: #F4E446
+		}
 		.artist_per{
 			width:4rem;
 			height: 5rem;
 			background-color: #00C1B3;
-			border: 1px solid #0000CC;
 		}
 		.artist_per:nth-child(2n){
 			margin: 0.4rem 0 0 0.4rem;
@@ -183,17 +217,13 @@
 			flex-wrap: wrap;
 			margin: 0 auto;
 		}
-		.intro_intro{
-			
-		}
+		
 		.box_add{
 			width: 100%;
 			height: 4.2rem;
-			border: 1px solid #FFFF00;
 			background-color: #7F7D7D;
 		}
 		.company_img{
-			border: 1px solid red;
 			width: 5.2rem;
 			height: 3.6rem;
 			margin: 0.4rem auto;
@@ -220,7 +250,8 @@
 		}
 		.foot{
 			background: #2e2929;
-			box-shadow: 0 -0.1rem 0.1rem #2e2929; 
+			box-shadow: 0 -0.1rem 0.1rem #2e2929;
+			
 		}
 		.title{
 			width: 80%;
@@ -236,15 +267,13 @@
 			align-items: center;
 		}
 		.title p{
-			width: 76%;
-			border: 1px solid red;
+			width: 88%;
 			line-height: 1rem;
 			margin-top: 0.2rem;
 		}
 		.title img{
 			width: 3.4rem;
 			height: 1.3rem;
-			border: 1px solid red;
 		}
 		.address{
 			width: 80%;
@@ -262,7 +291,6 @@
 			font-size: 26px;
 			width: 2.8rem;
 			margin: 0.2rem auto;
-			border: 1px solid red;
 			color: #EFE5E5;
 		}
 		.wechat{
@@ -280,4 +308,70 @@
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: center;
+			
+		}
+		#large_wrap{
+			position: absolute;
+			width: 100%;
+			background: rgba(0,0,0,0.5);
+			top: 0;
+			bottom: 0;
+			display: none;
+		}
+		.largeCanvas{
+			width:90%;
+			margin: 20% 5% 10% 5%;
+			height: 12.4rem;
+			background-color: #2c2c2c;
+			border-radius:20px;
+			position: fixed;
+			color: #fff;
+			
+		}
+		#large_header{
+			height: 6%;
+			border: 1px solid red;
+			margin: 3%;
+			font-size: 38px;
+			display: flex;
+			justify-content: space-between;
+		}
+		.turn{
+			width: 16%;
+			border: 1px solid red;
+			display: flex;
+			justify-content: space-between;
+		}
+		.img_wrap{
+			margin: 3%;
+			height: 85%;
+			border: 1px solid #fff;
+			overflow: auto;
+		}
+		.img_wrap img{
+			width: 100%;
+			height: 7.6rem;
+			border: 1px solid red;
+		}
+		.img_wrap p{
+			
+		}
+		.img_wrap h3{
+			font-size: 48px;
+			line-height: 1rem;
+			border: 1px solid red;
+		}
+		.img_intro{
+			display: flex;
+			justify-content: space-between;
+		}
+		.img_intro span{
+			width: 40%;
+			border: 1px solid red;
+		}
+		.show{
+			display: block;
+		}
+		.hide{
+			display: none;
 		}

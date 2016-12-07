@@ -10,7 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="css/animate.css"/>
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
-		
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<script type="text/javascript" src="js/touch.js"></script>
 	</head>
 	<body>
 		<header>
@@ -19,44 +20,47 @@
 			</div>
 			<nav >
 				<ul>
-					<li>首页</li>
-					<li>业务</li>
-					<li>我们</li>
-					<li>活动</li>
-					<li>艺人</li>
+					<li><a href="#imgShow">首页</a></li>
+					<li><a href="#business">业务</a></li>
+					<li><a href="#com">我们</a></li>
+					<li><a href="">活动</a></li>
+					<li><a href="#artist">艺人</a></li>
 				</ul>
 			</nav>
 		</header>
-		<div id="container" style="position: relative;">
+		<div id="container" >
 			<div id="imgShow">
 				<div>
-					<!--<canvas class="img animated bounceIn"></canvas>
-					<canvas class="img animated bounceIn"></canvas>
-					<canvas class="img animated bounceIn"></canvas>
-					<canvas class="img animated bounceIn"></canvas>
-					<canvas class="img animated bounceIn"></canvas>-->
-					<img src="img/1.jpg" class="img animated fadeInLeft"/>
+					<img src='img/1.jpg' class="img"/>
 					<p id="imgItro" class="">
-						<span>某某某</span>
-						<span>是个啥啥啥</span>
+						<span class="imgItro_span1">1111</span>
+						<span class="imgItro_span2">c1111</span>
 					</p>
 				</div>
 			</div>
 			<article id="videoShow">
-				<ul>
+				<ul class="videoTitle">
 					<li><span class="glyphicon glyphicon-facetime-video" ></span><span>精彩瞬间</span></li>
-					<li><span class="glyphicon glyphicon-th-list"></span><span>视频列表</span></li>
+					<li><span class="glyphicon glyphicon-th-list"></span><span class="videoBtn">视频列表</span></li>
 				</ul>
 				<div class="box">
 					<p><span class="glyphicon glyphicon-play-circle"></span><span class="video_intro">视频介绍1</span></p>
 					<div class="video_box">
-						<video class="video"></video>
+						<!--<iframe src="http://v.qq.com/iframe/player.html?vid=m0323dcsuov&tiny=0&auto=0" width="100%" height="100%"><embed wmode="direct" flashvars="vid=m0323dcsuov&amp;tpid=0&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;pic=//shp.qpic.cn/qqvideo_ori/0/m0323dcsuov_496_280/0&amp;shownext=1&amp;list=2&amp;autoplay=0" src="http://imgcache.qq.com/tencentvideo_v1/player/TPout.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1479460009166" id="tenvideo_flash_player_1479460009166" bgcolor="#000000" width="100%" height="100%" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
+						</iframe>-->
 					</div>
 				</div>
+				<ul class="videoList animated">
+					<li>111</li>
+					<li>22ww2</li>
+					<li>333</li>
+					<li>444</li>
+				</ul>
 			</article>
 			<article id="business" class="intro">
 				<span class="intro_fir">业务分布</span>
 				<span class="intro_sec">Business</span>
+				<span class="photo"><a href="photos.html">更多图片</a></span>
 				<div>
 					<ul class="bus">
 						<li >
@@ -67,7 +71,7 @@
 							</div>
 						</li>
 						<li>
-							<div class="intro_img"><img src="img/气球2.jpg"/></div>
+							<div class="intro_img"><img src=""/></div>
 							<div class="intro_intro">
 								<h2>庆典仪式</h2>
 								<span>承接开盘、开业、奠基开工、封顶竣工、剪裁通车等各种有关庆 典礼仪的仪式活动。</span>
@@ -123,7 +127,7 @@
 			<article id="adShow" class="box_add">
 				广告区域1
 			</article>
-			<article class="intro company">
+			<article class="intro company" id="com">
 				<span class="intro_fir">公司介绍</span>
 				<span class="intro_sec">Company</span>
 				<section>
@@ -146,19 +150,41 @@
 				<span class="intro_fir">合作艺人</span>
 				<span class="intro_sec">Artist</span>
 				<section>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
-					<canvas class="artist_per"></canvas>
+					<canvas class="artist_per" data_id="1"></canvas>
+					<canvas class="artist_per" data_id="2"></canvas>
+					<canvas class="artist_per" data_id="3"></canvas>
+					<canvas class="artist_per" data_id="4"></canvas>
+					<canvas class="artist_per" data_id="5"></canvas>
+					<canvas class="artist_per" data_id="6"></canvas>
+					<canvas class="artist_per" data_id="7"></canvas>
+					<canvas class="artist_per" data_id="8"></canvas>
 				</section>
 			</article>
 			<article id="partners" class="intro">
 				
 			</article>
+		</div>
+		<div id="large_wrap">
+			<div class="largeCanvas">
+				<div id="large_header">
+					<span class="glyphicon glyphicon-remove close"></span>
+					<span class="turn">
+						<span class="glyphicon glyphicon-arrow-left left"></span>
+						<span class="glyphicon glyphicon-arrow-right right"></span>
+					</span>
+				</div>
+				<div class="img_wrap">
+					<img src="img/1.jpg"/>
+					<p>
+						<h3>name</h3>
+						<span class="img_intro">
+							<span class="span1">介绍1wwwww</span>
+							<span class="span2">介绍2</span>
+						</span>
+						
+					</p>
+				</div>
+			</div>
 		</div>
 		<footer class="foot">
 			<div class="title">
@@ -176,47 +202,141 @@
 				</div>
 				<p class="wechat_intro">关注微信详细了解</p>
 			</div>
-			<div class="bottom"><span>www.shenghuoweiye.com 圣火炜业文化传媒</span><span>技术支持:<a>XX科技</a></span></div>
+			<div class="bottom"><span>www.shenghuoweiye.com 圣火炜业文化传媒</span><span>技术支持:<a>圣火科技</a></span></div>
 		</footer>
 	</body>
 </html>
 <script src="js/zepto.js"></script>
 <script type="text/javascript">
 	var win = $(window);
-	var timer;
-	var imgNum = 5;
-	var num = 0;
-	var angle = document.getElementsByClassName('cas');
-	console.log(angle);
-//	function drawSexangle(angleCanvas){
-		var context = angle.getContext("2d");
-//		context.moveTo(0,0);
-//		context.lineTo(3,3);
-//		context.stroke();
+	var angleCvs = $('.intro_img canvas')[0];
+	var videoBtn = $('.videoBtn');
+	var videoList = $('.videoList');
+	var box = $('.box');
+	var firImg = $('.img');
+	var domFirImg = firImg[0];
+	var sid = 1;
+	var ftotal = 5;
+	var span1 = $('.imgItro_span1');
+	var span2 = $('.imgItro_span2');
+	var Json = {
+		'title':['1111','2222','3333','4444','5555'],
+		'con':['c1111','c2222','c3333','c4444','c5555']
+	}
+	var artistPer = $('.artist_per');
+	var close = $('.close');
+	var left = $('.left');
+	var right = $('.right');
+	var largeWrap = $('#large_wrap');
+	var artImg = $('.img_wrap img');
+	//画六边形
+	function drawSexangle(cvs){
+		var cxt = cvs.getContext("2d");
 		cxt.beginPath();
-		cxt.moveTo(250,50);
-		cxt.lineTo(200,200);
-		cxt.lineTo(300,300);
+		cxt.moveTo(70,0);
+		cxt.lineTo(240,0);
+		cxt.lineTo(300,78);
+		cxt.lineTo(240,150);
+		cxt.lineTo(70,150);
+		cxt.lineTo(0,78);
 		cxt.closePath();//填充或闭合 需要先闭合路径才能画
-		//空心三角形
-		cxt.strokeStyle="red";
-		cxt.stroke();
-//	}
-//	drawSexangl(angle);
+		cxt.fillStyle = '#000';
+		cxt.fill();
+	}
+	drawSexangle(angleCvs);
 	
+	//css3手滑轮播图
+	firImg.swipeLeft(function(){
+		sid--;
+		if(sid<1){
+			sid = ftotal;
+		}
+		$('.img')[0].addEventListener('webkitAnimationEnd',function(){
+			firImg.removeClass('animated bounceInRight');
+			console.log(firImg)
+			$('.img')[0].removeEventListener('webkitAnimationEnd',false);
+		},false)
+		span1.text(Json.title[sid-1]);
+		span2.text(Json.con[sid-1]);
+		firImg.attr('src','img/'+sid+'.jpg').addClass('animated bounceInRight');
+		
+	}).swipeRight(function(){
+		sid++;
+		if(sid>ftotal){
+			sid = 1;
+		}
+		$('.img')[0].addEventListener('webkitAnimationEnd',function(){
+			firImg.removeClass('animated bounceInLeft');
+			console.log(firImg)
+			$('.img')[0].removeEventListener('webkitAnimationEnd',false);
+		},false)
+		span1.text(Json.title[sid-1]);
+		span2.text(Json.con[sid-1]);
+		
+		firImg.attr('src','img/'+sid+'.jpg').addClass('animated bounceInLeft');
+	})
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	//点击出现下拉框
+	videoBtn.tap(function(){
+		videoList.removeClass('bounceOutRight').addClass('bounceInRight show');
+	})
+	//点击关闭
+	box.tap(function(){
+		videoList.removeClass(' bounceInRight').addClass('bounceOutRight');
+	})
+	//艺人介绍
+	artistPer.tap(function(){
+		var total = $('.artist_per').length;
+		var index = $(this).attr('data_id');
+		var imgJson = {
+			"name" : ['name1','name2','name3','name4','name5','name6','name7','name8'],
+			"fir" : ['介绍11','介绍12','介绍13','介绍14','介绍15','介绍16','介绍17','介绍18'],
+			"sec" : ['介绍21','介绍22','介绍23','介绍24','介绍25','介绍26','介绍27','介绍28']
+		}
+		var name = $('.img_wrap h3');
+		var imgIntro1 = $('.span1');
+		var imgIntro2 = $('.span2');
+		artImg.attr('src','img/'+index+'.jpg');
+		name.html(imgJson.name[index-1]);
+		imgIntro1.html(imgJson.fir[index-1]);
+		imgIntro2.html(imgJson.sec[index-1]);
+		largeWrap.show();
+		console.log(right)
+		//切换艺人详细介绍
+		left.tap(function(){
+			if(index<=1){
+				index = total+1;
+			}
+			index--;
+			artImg[0].addEventListener('webkitAnimationEnd',function(){
+				artImg.removeClass('animated bounceInRight');
+				artImg[0].removeEventListener('webkitAnimationEnd',false);
+			},false)
+			artImg.attr('src','img/'+index+'.jpg').addClass('animated bounceInRight');
+			name.html(imgJson.name[index-1]);
+			imgIntro1.html(imgJson.fir[index-1]);
+			imgIntro2.html(imgJson.sec[index-1]);
+		})
+		right.tap(function(){
+			if(index>=total){
+				index = 0;
+			}
+			index++;
+			artImg[0].addEventListener('webkitAnimationEnd',function(){
+				artImg.removeClass('animated bounceInLeft');
+				artImg[0].removeEventListener('webkitAnimationEnd',false);
+			},false)
+			artImg.attr('src','img/'+index+'.jpg').addClass('animated bounceInLeft');
+			name.html(imgJson.name[index-1]);
+			imgIntro1.html(imgJson.fir[index-1]);
+			imgIntro2.html(imgJson.sec[index-1]);
+		})
+	})
+ 	//关闭艺人介绍
+ 	close.tap(function(){
+ 		largeWrap.hide();
+ 	})
 	
 //	function canvasImg(i){
 //		var imageObj = new Image();
@@ -227,17 +347,5 @@
 //		}
 //		imageObj.src = 'img/'+i+'.jpg';
 //	}
-//	timer = setInterval(function(){
-//		$('.img').removeClass('animated bounceIn')
-//		num++;
-//		if(num>imgNum){
-//			num = 1;
-//		}else if(num<1){
-//			num = imgNum;
-//		}
-//		
-//		$('#img').addClass('animated bounceIn')
-//		canvasImg(num)
-//	},2000)
 	
 </script>
